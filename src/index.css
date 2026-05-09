@@ -1,0 +1,355 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 39 100% 99%;
+    --foreground: 20 30% 15%;
+
+    --card: 39 60% 97%;
+    --card-foreground: 20 30% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 30% 15%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 39 80% 92%;
+    --secondary-foreground: 20 40% 20%;
+
+    --muted: 39 30% 94%;
+    --muted-foreground: 20 10% 45%;
+
+    --accent: 43 96% 56%;
+    --accent-foreground: 20 40% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 39 30% 88%;
+    --input: 39 30% 88%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.75rem;
+
+    --saffron: 24 95% 53%;
+    --saffron-light: 30 100% 95%;
+    --gold: 43 96% 56%;
+    --gold-dark: 38 80% 40%;
+    --temple-brown: 20 40% 25%;
+    --cream: 39 60% 97%;
+    --warm-white: 39 100% 99%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .gold-gradient {
+    background: linear-gradient(135deg, hsl(43, 96%, 56%), hsl(38, 80%, 40%));
+  }
+
+  .saffron-gradient {
+    background: linear-gradient(135deg, hsl(24, 95%, 58%), hsl(18, 90%, 45%));
+  }
+
+  .temple-border {
+    border-image: linear-gradient(135deg, hsl(43, 96%, 56%), hsl(24, 95%, 53%)) 1;
+  }
+
+  .gold-text {
+    background: linear-gradient(135deg, hsl(43, 96%, 56%), hsl(38, 80%, 40%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .premium-shadow {
+    box-shadow:
+      0 1px 2px hsl(24 95% 53% / 0.04),
+      0 4px 12px hsl(24 95% 53% / 0.06),
+      0 12px 32px hsl(24 95% 53% / 0.08);
+  }
+
+  .premium-shadow-hover {
+    box-shadow:
+      0 2px 4px hsl(24 95% 53% / 0.06),
+      0 8px 20px hsl(24 95% 53% / 0.1),
+      0 20px 48px hsl(24 95% 53% / 0.12);
+  }
+
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(43, 96%, 56% / 0.4), transparent);
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes scale-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.animate-float-in {
+  animation: float-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, hsl(43 96% 56% / 0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 4s ease-in-out infinite;
+}
+
+/* Premium card hover lift */
+.card-hover-lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 4px 12px hsl(20 30% 15% / 0.06),
+    0 16px 40px hsl(20 30% 15% / 0.08);
+}
+
+/* Input focus glow */
+.input-premium:focus {
+  border-color: hsl(24, 95%, 53%);
+  box-shadow: 0 0 0 3px hsl(24 95% 53% / 0.12);
+}
+
+/* Spiritual Header */
+.header-spiritual {
+  background: linear-gradient(135deg, hsl(39 100% 97%) 0%, hsl(39 80% 94%) 40%, hsl(43 60% 90%) 100%);
+  border-bottom: 2px solid hsl(43 96% 56% / 0.25);
+  position: relative;
+}
+
+.header-spiritual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 50%, hsl(24 95% 53% / 0.04) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, hsl(43 96% 56% / 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.header-spiritual::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, hsl(43 96% 56% / 0.5) 30%, hsl(24 95% 53% / 0.6) 50%, hsl(43 96% 56% / 0.5) 70%, transparent 100%);
+}
+
+.shadow-header-spiritual {
+  box-shadow: 0 4px 20px hsl(24 95% 53% / 0.08), 0 1px 6px hsl(43 96% 56% / 0.1);
+}
+
+/* Nav link spiritual animation */
+.nav-link-spiritual {
+  position: relative;
+}
+
+.nav-link-spiritual::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, hsl(43 96% 56%), hsl(24 95% 53%));
+  border-radius: 2px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-50%);
+}
+
+.nav-link-spiritual:hover::after,
+.nav-link-spiritual.active::after {
+  width: 70%;
+}
+
+.nav-link-spiritual:hover {
+  text-shadow: 0 0 20px hsl(24 95% 53% / 0.15);
+}
+
+.nav-active-glow {
+  text-shadow: 0 0 12px hsl(24 95% 53% / 0.2);
+}
+
+/* Legacy nav link animated - kept for compatibility */
+.nav-link-animated {
+  position: relative;
+}
+
+.nav-link-animated::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: hsl(24, 95%, 53%);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Badge pulse for cart count */
+@keyframes badge-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.badge-animate {
+  animation: badge-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Festival card hover glow */
+.festival-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.festival-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+  background-size: 300% 300%;
+  transition: background-position 0.6s ease;
+}
+
+.festival-card:hover::before {
+  background-position: 100% 100%;
+}
+
+/* Page backgrounds */
+.page-bg-shop {
+  background: linear-gradient(180deg, hsl(39 100% 97%) 0%, hsl(39 100% 99%) 30%, hsl(0 0% 100%) 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+.page-bg-shop::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0 C40 22 22 40 0 40 C22 40 40 58 40 80 C40 58 58 40 80 40 C58 40 40 22 40 0Z' fill='%23c77d2a' fill-opacity='1'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-bg-pooja {
+  background: linear-gradient(135deg, hsl(39 100% 99%) 0%, hsl(24 40% 97%) 100%);
+  background-attachment: fixed;
+  position: relative;
+}
+
+.page-bg-pooja::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at top right, hsl(43 96% 56% / 0.08) 0%, transparent 50%),
+    radial-gradient(circle at bottom left, hsl(24 95% 53% / 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-bg-contact {
+  background: hsl(39 100% 99%);
+  background-attachment: fixed;
+  position: relative;
+}
